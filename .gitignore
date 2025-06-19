@@ -6,6 +6,11 @@ __pycache__/
 dist/
 build/
 
+# Fichiers temporaires éditeurs
+*~
+*.bak
+*.tmp
+
 # Jupyter notebooks
 .ipynb_checkpoints/
 
@@ -17,8 +22,14 @@ build/
 
 # Data files
 /data/
+data/
 *.csv
-*.xlsx
+data/*.xlsx
+
+# Dossiers internes non versionnés
+data/
+notebooks/
 
 # Secrets
 secrets/
+
