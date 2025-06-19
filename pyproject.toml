@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "sport-data-solution"
+version = "0.1.0"
+description = ""
+authors = ["Maeva Beauvillain <m.berte@hotmail.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pandas = "^2.3.0"
+jupyter = "^1.1.1"
+ipykernel = "^6.29.5"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
