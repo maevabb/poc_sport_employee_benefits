@@ -25,6 +25,7 @@ build/
 data/
 *.csv
 data/*.xlsx
+postgres_data/
 
 # Dossiers internes non versionnés
 data/
