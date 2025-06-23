@@ -24,6 +24,7 @@ CREATE TABLE employes (
 -- Table des distances calculées
 CREATE TABLE commuting_distance (
     id_employe INTEGER PRIMARY KEY REFERENCES employes(id_employe),
+    adresse_domicile TEXT,
     distance_km NUMERIC,
     date_calcul DATE DEFAULT CURRENT_DATE,
     statut_distance TEXT
