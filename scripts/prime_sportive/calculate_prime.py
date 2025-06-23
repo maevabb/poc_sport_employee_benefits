@@ -14,6 +14,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
 engine = sqlalchemy.create_engine(DATABASE_URL)
 
+# === Paramètres métier ===
+
+DISTANCE_MAX_VELO = 25
+DISTANCE_MAX_MARCHE = 15
+TAUX_PRIME = 0.05
+
 # === Lecture des données employes + distance ===
 
 def fetch_employees_with_distance():
@@ -28,11 +34,11 @@ def fetch_employees_with_distance():
 
 def compute_prime(df):
     conditions = (
-        ((df['mode_deplacement'] == 'Vélo/Trottinette/Autres') & (df['distance_km'] <= 25)) |
-        ((df['mode_deplacement'] == 'Marche/running') & (df['distance_km'] <= 15))
+        ((df['mode_deplacement'] == 'Vélo/Trottinette/Autres') & (df['distance_km'] <= DISTANCE_MAX_VELO)) |
+        ((df['mode_deplacement'] == 'Marche/running') & (df['distance_km'] <= DISTANCE_MAX_MARCHE))
     )
     df['eligible_ps'] = conditions
-    df['montant_prime'] = df['salaire_brut'] * 0.05 * df['eligible_ps'].astype(int)
+    df['montant_prime'] = df['salaire_brut'] * TAUX_PRIME * df['eligible_ps'].astype(int)
     return df[['id_employe', 'eligible_ps', 'montant_prime']]
 
 # === Insertion ou mise à jour en base ===
