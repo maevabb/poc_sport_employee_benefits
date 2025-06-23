@@ -1,4 +1,4 @@
--- Nettoyage préalable (optionnel si tu rejoues plusieurs fois pendant le dev)
+-- Nettoyage préalable
 DROP TABLE IF EXISTS cp_bien_etre;
 DROP TABLE IF EXISTS prime_sportive;
 DROP TABLE IF EXISTS commuting_distance;
