@@ -28,7 +28,6 @@ data/*.xlsx
 
 # Dossiers internes non versionnés
 data/
-notebooks/
 
 # Secrets
 secrets/
