@@ -4,7 +4,7 @@
 
 ## Objectif du projet
 
-Ce projet constitue un **Proof of Concept (POC)** pour l’entreprise Sport Data Solution.  
+Ce projet constitue un **POC** pour l’entreprise Sport Data Solution.  
 L'objectif est de construire un pipeline de données permettant :
 
 - Le calcul de la prime sportive des collaborateurs, basée sur leurs modes de déplacement domicile-travail.
