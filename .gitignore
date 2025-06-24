@@ -26,6 +26,7 @@ data/
 *.csv
 data/*.xlsx
 postgres_data/
+redpanda_data/
 
 # Dossiers internes non versionnés
 data/
