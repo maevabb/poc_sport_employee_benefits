@@ -94,7 +94,7 @@ def main(nb_messages=300):
 
         # Envoi dans Redpanda
         producer.produce(TOPIC_NAME, value=json.dumps(activity).encode('utf-8'))
-        producer.flush()  # Pour garantir l’envoi immédiat du message
+        producer.flush() 
 
         logging.info(f"Message {i+1}/{nb_messages} envoyé : {activity}")
 
