@@ -2,6 +2,7 @@ import os
 import json
 import sqlalchemy
 import logging
+from datetime import datetime
 from dotenv import load_dotenv
 from confluent_kafka import Consumer, KafkaError
 
@@ -28,6 +29,29 @@ consumer_conf = {
 consumer = Consumer(consumer_conf)
 consumer.subscribe([TOPIC_NAME])
 
+# === Fonction de validation des messages ===
+def validate_activity(activity):
+    # Vérification ID employé
+    if not isinstance(activity['id_employe'], int) or activity['id_employe'] <= 0:
+        raise ValueError("ID employé invalide")
+
+    # Vérification des dates
+    try:
+        debut = datetime.fromisoformat(activity['debut_activite'])
+        fin = datetime.fromisoformat(activity['fin_activite'])
+        if fin < debut:
+            raise ValueError("Fin d'activité antérieure au début")
+    except Exception as e:
+        raise ValueError(f"Erreur de parsing des dates : {e}")
+
+    # Vérification distance (si renseignée)
+    if activity['distance'] is not None and activity['distance'] < 0:
+        raise ValueError("Distance négative")
+
+    # Vérification temps
+    if activity['temps_sec'] < 0:
+        raise ValueError("Durée négative")
+
 # === Insertion dans PostgreSQL ===
 def insert_activity(activity):
     with engine.begin() as conn:
@@ -50,9 +74,9 @@ def insert_activity(activity):
             }
         )
 
-# === Pipeline principal de consommation ===
+# === Pipeline principal ===
 def main():
-    logging.info("Démarrage du consumer streaming...")
+    logging.info("Démarrage du consumer streaming avec validation...")
     try:
         while True:
             msg = consumer.poll(1.0)
@@ -67,10 +91,11 @@ def main():
 
             try:
                 activity = json.loads(msg.value().decode('utf-8'))
+                validate_activity(activity)
                 insert_activity(activity)
-                logging.info(f"Activité insérée : employé {activity['id_employe']} - {activity['type_activite']}")
+                logging.info(f"Activité insérée pour employé {activity['id_employe']}")
             except Exception as e:
-                logging.error(f"Erreur traitement message : {e}")
+                logging.error(f"Message rejeté : {e}")
 
     except KeyboardInterrupt:
         logging.info("Arrêt manuel du consumer.")
