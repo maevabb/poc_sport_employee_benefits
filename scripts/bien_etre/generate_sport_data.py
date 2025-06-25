@@ -17,6 +17,10 @@ load_dotenv()
 import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+# PARAMETRES par défaut
+NB_MESSAGES_DEFAULT = 50
+TIME_SLEEP_DEFAULT = 3
+
 # Connexion PostgreSQL
 DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
 engine = sqlalchemy.create_engine(DATABASE_URL)
@@ -82,7 +86,7 @@ def fetch_employees_with_sport():
     """
     return pd.read_sql(query, con=engine)
 
-def main(nb_messages=300):
+def main(nb_messages, time_sleep):
     df = fetch_employees_with_sport()
     logging.info(f"{len(df)} employés avec pratique sportive trouvés.")
 
@@ -92,19 +96,19 @@ def main(nb_messages=300):
         sport_type = SPORT_MAPPING.get(sport_pratique, sport_pratique)
         activity = generate_activity(row['id_employe'], sport_type)
 
-        # Envoi dans Redpanda
         producer.produce(TOPIC_NAME, value=json.dumps(activity).encode('utf-8'))
         producer.flush() 
 
         logging.info(f"Message {i+1}/{nb_messages} envoyé : {activity}")
 
-        time.sleep(3)
+        time.sleep(time_sleep)
 
     logging.info("Simulation terminée.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Simulateur d'activités sportives")
-    parser.add_argument("--nb_messages", type=int, default=300, help="Nombre de messages à générer")
+    parser.add_argument("--nb_messages", type=int, default=NB_MESSAGES_DEFAULT, help="Nombre de messages à générer")
+    parser.add_argument("--time_sleep", type=int, default=TIME_SLEEP_DEFAULT, help="Temps de pause entre chaque message (en secondes)")
     args = parser.parse_args()
 
-    main(nb_messages=args.nb_messages)
+    main(nb_messages=args.nb_messages, time_sleep=args.time_sleep)
