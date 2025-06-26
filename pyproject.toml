@@ -19,6 +19,7 @@ psycopg2-binary = "^2.9.10"
 requests = "^2.32.4"
 python-dotenv = "^1.1.0"
 confluent-kafka = "^2.10.1"
+slack-sdk = "^3.35.0"
 
 
 [build-system]
