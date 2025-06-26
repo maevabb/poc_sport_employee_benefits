@@ -47,36 +47,36 @@ def build_slack_message(activity, prenom, nom):
     sport = activity['type_activite']
     distance_km = round(activity["distance"] / 1000, 2) if activity["distance"] else None
     temps_min = activity['temps_sec'] // 60
-    temps_hr = round(activity["temps_sec"] / 3600, 2)
     commentaire = activity.get("commentaire", "").strip()
 
     if sport.lower() == "randonnée" and distance_km:
-        base_message = f":hiking_boot: Magnifique {prenom} {nom} ! Une randonnée de {distance_km} km terminée en {temps_hr} heures ! :sunrise_over_mountains:"
+        base_message = (f":hiking_boot: Magnifique {prenom} {nom} !\n" 
+                        f"Une randonnée de {distance_km} km terminée en {temps_min} min !")
     elif sport.lower() == "running" and distance_km:
-        base_message = f":person_running: Bravo {prenom} {nom} ! Tu viens de courir {distance_km} km en {temps_min} min ! Quelle énergie ! :fire:"
+        base_message = (f":running: Bravo {prenom} {nom} !\n"
+                        f"Tu viens de courir {distance_km} km en {temps_min} min ! Quelle énergie !")
     elif distance_km:
-        base_message = f":party_popper: Super {prenom} {nom} ! Une belle séance de {sport} de {distance_km} km en {temps_min} minutes vient d'être enregistrée !"
+        base_message = (f":tada: Super {prenom} {nom} !\n"
+                        f"Une belle séance de {sport} de {distance_km} km en {temps_min} minutes vient d'être enregistrée !")
     else:
-        base_message = f":party_popper: Super {prenom} {nom} ! Une séance de {sport} de {temps_min} minutes vient d'être enregistrée !"
+        base_message = (f":tada: Super {prenom} {nom} !\n"
+                        f"Une séance de {sport} de {temps_min} minutes vient d'être enregistrée !")
     
-   
-    if sport.lower() == "natation":
-        base_message += " :person_swimming::water_wave:"
-    elif sport.lower() == "tennis":
-        base_message += " :tennis:"
-    elif sport.lower() == "football":
-        base_message += " :soccer_ball:"
-    elif sport.lower() == "rugby":
-        base_message += " :rugby_football:"
-    elif sport.lower() == "boxe":
-        base_message += " :boxing_glove:"
-    elif sport.lower() == "équitation":
-        base_message += " :horse_racing:"
-    else:
-        base_message += " :sports_medal:"
+    sport_emoji = {
+       "randonnée" : ":sunrise:",
+       "running" : ":fire:",
+       "natation": ":swimmer:",
+       "tennis": ":tennis:",
+       "football": ":soccer:",
+       "rugby" : ":rugby_football:",
+       "boxe" : ":boxing_glove:",
+       "équitation" : ":horse_racing:"
+   }
+    
+    base_message += " " + sport_emoji.get(sport.lower(), ":sports_medal:")
 
     if commentaire:
-        base_message += f"\n\"({commentaire})\""
+        base_message += f'\n:speech_balloon: "{commentaire}"'
 
     return base_message
 
