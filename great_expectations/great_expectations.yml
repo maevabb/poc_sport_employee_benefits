@@ -83,22 +83,16 @@ data_docs_sites:
 fluent_datasources:
   sport_data_solution:
     type: postgres
-    id: afeba80e-77e7-4a80-8ed0-63da8fa4c138
+    id: af0d6621-adc1-4765-9d82-0b93eaa0ddcd
     assets:
       activities_asset:
         type: table
-        id: 20eb8424-1ab4-4cfd-bac4-0fb07e7b159b
+        id: 2e1722b4-e42d-4d68-b796-8b6e2cbf3118
         batch_metadata: {}
         batch_definitions:
           FULL_TABLE:
-            id: b265123e-85a9-402a-b2d8-62119eca0bb4
+            id: 3d511a7e-945a-4435-8e75-b27f56c6684d
             partitioner:
-        table_name: activities_sportives
-        schema_name:
-      activities_sportives_asset:
-        type: table
-        id: 32608e82-ce16-4fcf-b297-b41b67622470
-        batch_metadata: {}
         table_name: activities_sportives
         schema_name:
     connection_string: ${POSTGRESQL_CONNECTION_STRING}
