@@ -1,0 +1,22 @@
+{
+  "data": {
+    "asset": {
+      "id": "2e1722b4-e42d-4d68-b796-8b6e2cbf3118",
+      "name": "activities_asset"
+    },
+    "batch_definition": {
+      "id": "3d511a7e-945a-4435-8e75-b27f56c6684d",
+      "name": "FULL_TABLE"
+    },
+    "datasource": {
+      "id": "af0d6621-adc1-4765-9d82-0b93eaa0ddcd",
+      "name": "sport_data_solution"
+    }
+  },
+  "id": "bf1aed84-c832-4e45-8a07-a7212a5248c3",
+  "name": "validate_activities_data",
+  "suite": {
+    "id": "f436447b-d63c-4df3-a914-9a38a559a3c6",
+    "name": "validate_activities_sportives"
+  }
+}
