@@ -30,6 +30,7 @@ redpanda_data/
 
 # Dossiers internes non versionnés
 data/
+scripts/great_expectations/
 
 # Secrets
 secrets/
