@@ -3,7 +3,7 @@ import great_expectations as gx
 context = gx.get_context()
 
 # Retrieve a Data Source
-datasource_name = "sport_data_solution"
+datasource_name = "bdd_postgresql"
 data_source = context.data_sources.get(datasource_name)
 
 # Get the Data Asset from the Data Source

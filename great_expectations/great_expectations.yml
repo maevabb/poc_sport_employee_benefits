@@ -81,20 +81,37 @@ data_docs_sites:
     site_index_builder:
       class_name: DefaultSiteIndexBuilder
 fluent_datasources:
-  sport_data_solution:
+  bdd_postgresql:
     type: postgres
-    id: af0d6621-adc1-4765-9d82-0b93eaa0ddcd
+    id: 875cbe06-0f8a-42fc-b32d-c36157626bd1
     assets:
       activities_asset:
         type: table
-        id: 2e1722b4-e42d-4d68-b796-8b6e2cbf3118
+        id: 93736bde-0108-46e5-8ee9-c8379c050bdc
         batch_metadata: {}
         batch_definitions:
           FULL_TABLE:
-            id: 3d511a7e-945a-4435-8e75-b27f56c6684d
+            id: 64270643-86f5-44d6-9476-4ad310ba4094
             partitioner:
         table_name: activities_sportives
         schema_name:
     connection_string: ${POSTGRESQL_CONNECTION_STRING}
+  s3_rh_datasource:
+    type: pandas_s3
+    id: 93a498ac-426f-4125-af77-a7e1e6ddbf42
+    assets:
+      S3_employes_asset:
+        type: csv
+        id: 680484d8-8801-4b65-875d-7dc52cd0e6b9
+        batch_definitions:
+          cleaned_employes_latest.csv:
+            id: ecf8fabe-8263-445d-b38f-a341d2e47d9f
+            partitioner:
+              regex: cleaned_employes_latest.csv$
+              param_names: []
+        connect_options:
+          s3_prefix: clean_data/
+    bucket: p12-sport-data-solution
+    boto3_options: {}
 analytics_enabled:
 data_context_id: 38b4e62c-d51a-4c6b-bf50-f39d03c37e66

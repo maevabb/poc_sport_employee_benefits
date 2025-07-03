@@ -2,7 +2,7 @@ import great_expectations as gx
 
 context = gx.get_context()
 
-data_source_name = "sport_data_solution"
+data_source_name = "bdd_postgresql"
 
 my_connection_string = "${POSTGRESQL_CONNECTION_STRING}"
 

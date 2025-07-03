@@ -1,0 +1,228 @@
+{
+  "expectations": [
+    {
+      "id": "ad55cae2-6615-46b1-91d4-b29970dbfeb6",
+      "kwargs": {
+        "column": "id_employe"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "2be1f6ad-6c77-4c49-a5cf-f20f7fcc1c8d",
+      "kwargs": {
+        "column": "nom"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "cf9c5987-26f0-4420-b914-31c994187a4b",
+      "kwargs": {
+        "column": "prenom"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "4dbe4edb-428a-4b02-ab74-2f2b6e7dd74d",
+      "kwargs": {
+        "column": "date_naissance"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "9f5549f1-143a-4c4c-ac01-21f1c10d9c1e",
+      "kwargs": {
+        "column": "bu"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "15a5c9f8-1353-48a1-8d30-8b7d5caee299",
+      "kwargs": {
+        "column": "date_embauche"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "f8eb397e-6e36-495c-b6db-6f9db1129c0e",
+      "kwargs": {
+        "column": "salaire_brut"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "a594dfcb-effe-477b-b387-d858daf67b22",
+      "kwargs": {
+        "column": "type_contrat"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "889a1df5-6125-42a0-a257-929361985722",
+      "kwargs": {
+        "column": "nb_jours_cp"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "d36cfdae-abe5-4808-b199-8431a51fc915",
+      "kwargs": {
+        "column": "adresse_domicile"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "4bd01643-c135-4d2e-806d-11c39d7f4455",
+      "kwargs": {
+        "column": "mode_deplacement"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "97c461af-9051-4007-a20b-57eb64ae7553",
+      "kwargs": {
+        "column": "pratique_sportive"
+      },
+      "meta": {},
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "5fa4f34b-f640-4787-802e-a29905b01632",
+      "kwargs": {
+        "column": "id_employe"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fab032bc-f893-43db-abd5-a26d8a042d69",
+      "kwargs": {
+        "column": "nom"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f46075e1-0417-4e21-8443-1c4b80d99a4a",
+      "kwargs": {
+        "column": "prenom"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ce29d349-86a6-4c03-af42-51d3a0f88d1c",
+      "kwargs": {
+        "column": "date_naissance"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "00a2a610-3209-4cbb-9f2f-8c11e22c3808",
+      "kwargs": {
+        "column": "date_embauche"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d5c4c0cc-7180-46a6-b488-2470096f204a",
+      "kwargs": {
+        "column": "salaire_brut"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "92302866-1213-4abd-9607-50b315202533",
+      "kwargs": {
+        "column": "type_contrat"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "70353bc5-8d64-4be7-af37-3e2b5440241a",
+      "kwargs": {
+        "column": "nb_jours_cp"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2e502677-0636-47ef-9252-5191fe00889d",
+      "kwargs": {
+        "column": "mode_deplacement"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3d8117e5-335b-4896-84d9-284df3e70760",
+      "kwargs": {
+        "column": "id_employe"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ce661439-92a6-4fdf-bc67-c8e0c45430c6",
+      "kwargs": {
+        "column_A": "date_embauche",
+        "column_B": "date_naissance",
+        "or_equal": false
+      },
+      "meta": {},
+      "type": "expect_column_pair_values_a_to_be_greater_than_b"
+    },
+    {
+      "id": "bc371df6-62df-4415-9474-6d5f5f33f48a",
+      "kwargs": {
+        "column": "mode_deplacement",
+        "value_set": [
+          "Transports en commun",
+          "v\u00e9hicule thermique/\u00e9lectrique",
+          "Marche/running",
+          "V\u00e9lo/Trottinette/Autres"
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "6cd7eec3-d7e3-4bbe-9b91-6a45e00a050b",
+      "kwargs": {
+        "column": "prenom",
+        "regex": "^[A-Za-z\u00c0-\u00ff' -]+$"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_match_regex"
+    },
+    {
+      "id": "f286e4bc-329e-49c3-8a84-50e379c7c036",
+      "kwargs": {
+        "column": "nom",
+        "regex": "^[A-Za-z\u00c0-\u00ff' -]+$"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_match_regex"
+    }
+  ],
+  "id": "b23d1f8f-ee60-41b0-bc11-12e2e426ec9e",
+  "meta": {
+    "great_expectations_version": "1.5.3"
+  },
+  "name": "validate_employes",
+  "notes": null
+}

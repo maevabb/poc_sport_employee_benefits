@@ -1,0 +1,22 @@
+{
+  "data": {
+    "asset": {
+      "id": "680484d8-8801-4b65-875d-7dc52cd0e6b9",
+      "name": "S3_employes_asset"
+    },
+    "batch_definition": {
+      "id": "ecf8fabe-8263-445d-b38f-a341d2e47d9f",
+      "name": "cleaned_employes_latest.csv"
+    },
+    "datasource": {
+      "id": "93a498ac-426f-4125-af77-a7e1e6ddbf42",
+      "name": "s3_rh_datasource"
+    }
+  },
+  "id": "7c8c1ecc-d950-4cc5-a0aa-ae7dc9651822",
+  "name": "validate_employes_data",
+  "suite": {
+    "id": "b23d1f8f-ee60-41b0-bc11-12e2e426ec9e",
+    "name": "validate_employes"
+  }
+}
