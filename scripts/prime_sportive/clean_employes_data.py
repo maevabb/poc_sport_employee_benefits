@@ -1,34 +1,11 @@
-import os
 import logging
-import boto3
 import pandas as pd
-import sqlalchemy
 from io import BytesIO
 from datetime import datetime
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# === Logger ===
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # === Config ===
-AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-BUCKET_NAME = "p12-sport-data-solution"
-PREFIX_RH = "donnees-rh/"
-PREFIX_SPORT = "donnees-sportives/"
-PREFIX_CLEAN = "clean_data/"
-
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
-
-# === S3 Client ===
-s3_client = boto3.client(
-    "s3",
-    aws_access_key_id=AWS_ACCESS_KEY,
-    aws_secret_access_key=AWS_SECRET_KEY
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+from scripts.config import (s3_client, BUCKET_NAME, PREFIX_RH, PREFIX_SPORT, PREFIX_CLEAN)
 
 # === Utilitaires pour téléchargement ===
 def fetch_latest_excel_from_prefix(prefix):

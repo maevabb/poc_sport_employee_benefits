@@ -1,25 +1,19 @@
-import os
 import json
 import sqlalchemy
 import logging
 import requests
 from datetime import datetime
-from dotenv import load_dotenv
-from confluent_kafka import Consumer, KafkaError
+from confluent_kafka import KafkaError
 
-load_dotenv()
-
-# === Logger ===
+# === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# === Connexion PostgreSQL ===
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
+from scripts.config import (
+    engine,
+    SLACK_BOT_TOKEN, SLACK_CHANNEL_ID,
+    consumer, TOPIC_NAME
+    )
 
 # === Slack ===
-SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-SLACK_CHANNEL_ID = os.getenv("SLACK_CHANNEL_ID")
-
 def send_to_slack(message):
     headers = {
         "Authorization": f"Bearer {SLACK_BOT_TOKEN}",
@@ -81,17 +75,6 @@ def build_slack_message(activity, prenom, nom):
     return base_message
 
 # === Connexion Redpanda (Kafka) ===
-KAFKA_BROKER = 'localhost:9092'
-TOPIC_NAME = 'sport-activities'
-GROUP_ID = 'activity-consumer-group'
-
-consumer_conf = {
-    'bootstrap.servers': KAFKA_BROKER,
-    'group.id': GROUP_ID,
-    'auto.offset.reset': 'earliest' 
-}
-
-consumer = Consumer(consumer_conf)
 consumer.subscribe([TOPIC_NAME])
 
 # === Fonction de validation des messages ===

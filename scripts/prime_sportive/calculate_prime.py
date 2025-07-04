@@ -1,26 +1,13 @@
-import os
-import pandas as pd
 import sqlalchemy
+import pandas as pd
 import logging
-from dotenv import load_dotenv
 
-load_dotenv()
+# === Config ===
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+from scripts.config import (engine)
 
 # === Paramètres métier ===
-
-from scripts.params import (
-    DISTANCE_MAX_VELO,
-    DISTANCE_MAX_MARCHE,
-    TAUX_PRIME,
-)
-# === Logger ===
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# === Connexion PostgreSQL ===
-
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
+from scripts.params import (DISTANCE_MAX_VELO, DISTANCE_MAX_MARCHE, TAUX_PRIME,)
 
 # === Lecture des données employes + distance ===
 

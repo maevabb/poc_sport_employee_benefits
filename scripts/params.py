@@ -15,3 +15,25 @@ NB_JOURS_BE = 5             # Nb de jours bien-être accordés
 # générateur d'activités sportives
 NB_MESSAGES_DEFAULT = 50    # Nb d'activités générées
 TIME_SLEEP_DEFAULT = 3      # Durée en secondes entre chaque message
+
+SPORT_MAPPING = {
+    'Runing': 'Running',
+    'Tennis': 'Tennis',
+    'Randonnée': 'Randonnée',
+    'Natation': 'Natation',
+    'Football': 'Football',
+    'Rugby': 'Rugby',
+    'Badminton': 'Badminton',
+    'Voile': 'Voile',
+    'Boxe': 'Boxe',
+    'Judo': 'Judo',
+    'Escalade': 'Escalade',
+    'Triathlon': 'Triathlon',
+    'Équitation': 'Équitation',
+    'Tennis de table': 'Tennis de table',
+    'Basketball': 'Basketball'
+}
+
+DISTANCE_RELEVANT_SPORTS = [
+    'Running', 'Randonnée', 'Natation', 'Triathlon', 'Équitation', 'Voile'
+]

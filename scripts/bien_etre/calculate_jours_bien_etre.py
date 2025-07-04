@@ -1,20 +1,11 @@
-import os
 import pandas as pd
 import sqlalchemy
 import logging
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 
-
-load_dotenv()
-
-# === Logger ===
+# === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# === Connexion PostgreSQL ===
-
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
+from scripts.config import (engine)
 
 # === Paramètres métier ===
 from scripts.params import (NB_ACTIVITES_MIN, NB_JOURS_BE)

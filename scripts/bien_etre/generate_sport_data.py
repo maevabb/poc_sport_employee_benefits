@@ -1,58 +1,22 @@
-import os
 import json
 import random
 import time
 from datetime import datetime, timedelta
 import argparse
-
-import pandas as pd
-import sqlalchemy
-from dotenv import load_dotenv
-from confluent_kafka import Producer
-
-# Charger les variables d'environnement
-load_dotenv()
-
-# Logger simple
 import logging
+import pandas as pd
+
+# === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+from scripts.config import (
+    engine,
+    producer, TOPIC_NAME
+    )
 
-# PARAMETRES par défaut
-from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT)
+# === Paramètres métier ===
+from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT, SPORT_MAPPING, DISTANCE_RELEVANT_SPORTS)
 
-# Connexion PostgreSQL
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
-
-# Connexion Redpanda (Kafka via confluent_kafka)
-KAFKA_BROKER = 'localhost:9092'
-TOPIC_NAME = 'sport-activities'
-
-producer = Producer({'bootstrap.servers': KAFKA_BROKER})
-
-# Mapping simple pour normaliser les fautes
-SPORT_MAPPING = {
-    'Runing': 'Running',
-    'Tennis': 'Tennis',
-    'Randonnée': 'Randonnée',
-    'Natation': 'Natation',
-    'Football': 'Football',
-    'Rugby': 'Rugby',
-    'Badminton': 'Badminton',
-    'Voile': 'Voile',
-    'Boxe': 'Boxe',
-    'Judo': 'Judo',
-    'Escalade': 'Escalade',
-    'Triathlon': 'Triathlon',
-    'Équitation': 'Équitation',
-    'Tennis de table': 'Tennis de table',
-    'Basketball': 'Basketball'
-}
-
-DISTANCE_RELEVANT_SPORTS = [
-    'Running', 'Randonnée', 'Natation', 'Triathlon', 'Équitation', 'Voile'
-]
-
+# === Fonctions ===
 def generate_activity(employee_id, sport_type):
     now = datetime.now()
     start_date = now - timedelta(days=365)

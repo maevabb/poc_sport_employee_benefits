@@ -1,26 +1,16 @@
-import os
 import time
 import pandas as pd
 import requests
 import sqlalchemy
 import logging
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# === Logger ===
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-
-# === Paramètres globaux ===
-
-from scripts.params import (WORK_ADDRESS)
 
 # === Config ===
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+from scripts.config import (engine, GOOGLE_API_KEY)
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# === Paramètres métier ===
+from scripts.params import (WORK_ADDRESS)
 
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
-engine = sqlalchemy.create_engine(DATABASE_URL)
 
 # === Appel de l'API Google avec gestion des exceptions ===
 
