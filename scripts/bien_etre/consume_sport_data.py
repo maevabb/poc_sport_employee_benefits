@@ -9,7 +9,7 @@ from confluent_kafka import KafkaError
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 from scripts.config import (
     engine,
-    SLACK_BOT_TOKEN, SLACK_CHANNEL_ID,
+    SLACK_BOT_TOKEN_COACH, SLACK_CHANNEL_ID_COACH,
     consumer, TOPIC_NAME
     )
 
@@ -19,11 +19,11 @@ def send_to_slack(message):
     Envoie un message formaté dans un canal Slack via l'API Slack.
     """
     headers = {
-        "Authorization": f"Bearer {SLACK_BOT_TOKEN}",
+        "Authorization": f"Bearer {SLACK_BOT_TOKEN_COACH}",
         "Content-type": "application/json"
     }
     payload = {
-        "channel": SLACK_CHANNEL_ID,
+        "channel": SLACK_CHANNEL_ID_COACH,
         "text": message
     }
     response = requests.post("https://slack.com/api/chat.postMessage", headers=headers, json=payload)
@@ -177,7 +177,7 @@ def main():
         consumer.close()
 
 if __name__ == "__main__":
-    if not SLACK_BOT_TOKEN or not SLACK_CHANNEL_ID:
+    if not SLACK_BOT_TOKEN_COACH or not SLACK_CHANNEL_ID_COACH:
         logging.error("Variables SLACK_BOT_TOKEN ou SLACK_CHANNEL_ID manquantes.")
     else:
         main()
