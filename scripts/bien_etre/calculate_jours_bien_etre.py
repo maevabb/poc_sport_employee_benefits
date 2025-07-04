@@ -17,9 +17,7 @@ DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avant
 engine = sqlalchemy.create_engine(DATABASE_URL)
 
 # === Paramètres métier ===
-
-NB_ACTIVITES_MIN = 15
-NB_JOURS_BE = 5
+from scripts.params import (NB_ACTIVITES_MIN, NB_JOURS_BE)
 
 # === Lecture des activités sportives des 12 derniers mois ===
 

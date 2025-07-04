@@ -6,19 +6,21 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# === Paramètres métier ===
+
+from scripts.params import (
+    DISTANCE_MAX_VELO,
+    DISTANCE_MAX_MARCHE,
+    TAUX_PRIME,
+)
 # === Logger ===
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # === Connexion PostgreSQL ===
 
 DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
 engine = sqlalchemy.create_engine(DATABASE_URL)
-
-# === Paramètres métier ===
-
-DISTANCE_MAX_VELO = 25
-DISTANCE_MAX_MARCHE = 15
-TAUX_PRIME = 0.05
 
 # === Lecture des données employes + distance ===
 

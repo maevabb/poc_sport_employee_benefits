@@ -13,7 +13,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 # === Paramètres globaux ===
 
-WORK_ADDRESS = "1362 Avenue des Platanes, 34970 Lattes, France"
+from scripts.params import (WORK_ADDRESS)
+
+# === Config ===
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 

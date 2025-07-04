@@ -18,8 +18,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # PARAMETRES par défaut
-NB_MESSAGES_DEFAULT = 50
-TIME_SLEEP_DEFAULT = 3
+from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT)
 
 # Connexion PostgreSQL
 DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
