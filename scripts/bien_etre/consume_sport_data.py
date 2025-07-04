@@ -15,6 +15,9 @@ from scripts.config import (
 
 # === Slack ===
 def send_to_slack(message):
+    """
+    Envoie un message formaté dans un canal Slack via l'API Slack.
+    """
     headers = {
         "Authorization": f"Bearer {SLACK_BOT_TOKEN}",
         "Content-type": "application/json"
@@ -30,6 +33,9 @@ def send_to_slack(message):
         logging.info(f"Message Slack envoyé : {message}")
 
 def get_employee_name(id_employe):
+    """
+    Récupère le prénom et le nom d'un employé à partir de son identifiant.
+    """
     with engine.begin() as conn:
         result = conn.execute(
             sqlalchemy.text("SELECT prenom, nom FROM employes WHERE id_employe = :id"),
@@ -38,6 +44,9 @@ def get_employee_name(id_employe):
         return result if result else (None, None)
 
 def build_slack_message(activity, prenom, nom):
+    """
+    Construit un message Slack personnalisé à partir d'une activité sportive
+    """
     sport = activity['type_activite']
     distance_km = round(activity["distance"] / 1000, 2) if activity["distance"] else None
     temps_min = activity['temps_sec'] // 60
@@ -79,6 +88,13 @@ consumer.subscribe([TOPIC_NAME])
 
 # === Fonction de validation des messages ===
 def validate_activity(activity):
+    """
+    Valide les champs d'une activité sportive avant insertion :
+    - ID employé valide
+    - Dates valides (fin >= début)
+    - Distance positive si présente
+    - Temps d'activité non négatif
+    """
     # Vérification ID employé
     if not isinstance(activity['id_employe'], int) or activity['id_employe'] <= 0:
         raise ValueError("ID employé invalide")
@@ -102,6 +118,9 @@ def validate_activity(activity):
 
 # === Insertion dans PostgreSQL ===
 def insert_activity(activity):
+    """
+    Insère une activité sportive validée dans la base PostgreSQL.
+    """
     with engine.begin() as conn:
         conn.execute(
             sqlalchemy.text("""
@@ -124,6 +143,13 @@ def insert_activity(activity):
 
 # === Main loop ===
 def main():
+    """
+    Boucle principale du consumer Kafka :
+    - Consomme les messages d'activités sportives.
+    - Valide les données reçues.
+    - Insère en base.
+    - Envoie un message personnalisé sur Slack si l'employé est reconnu.
+    """
     logging.info("🟢 Consumer démarré...")
     try:
         while True:

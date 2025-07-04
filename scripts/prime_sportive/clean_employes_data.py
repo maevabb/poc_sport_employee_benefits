@@ -9,6 +9,9 @@ from scripts.config import (s3_client, BUCKET_NAME, PREFIX_RH, PREFIX_SPORT, PRE
 
 # === Utilitaires pour téléchargement ===
 def fetch_latest_excel_from_prefix(prefix):
+    """
+    Télécharge le fichier Excel le plus récent depuis un préfixe donné dans un bucket S3.
+    """
     response = s3_client.list_objects_v2(Bucket=BUCKET_NAME, Prefix=prefix)
     files = sorted(
         [obj["Key"] for obj in response.get("Contents", []) if obj["Key"].endswith(".xlsx")],
@@ -23,6 +26,12 @@ def fetch_latest_excel_from_prefix(prefix):
 
 # === Nettoyage RH ===
 def clean_rh_data(df):
+    """
+    Nettoie et standardise les données issues du fichier RH :
+    - Renommage des colonnes.
+    - Encodage des noms/prénoms.
+    - Suppression des doublons et des valeurs manquantes critiques..
+    """
     logging.info("Nettoyage des données rh...")
     original_len = len(df)
 
@@ -59,6 +68,11 @@ def clean_rh_data(df):
 
 # === Nettoyage sport ===
 def clean_sport_data(df):
+    """
+    Nettoie et standardise les données issues du fichier sport :
+    - Renommage des colonnes.
+    - Suppression des doublons et des enregistrements incomplets.
+    """
     logging.info("Nettoyage des données sportives...")
     original_len = len(df)
 
@@ -77,11 +91,19 @@ def clean_sport_data(df):
 
 # === Fusion RH + sport ===
 def merge_data(df_rh, df_sport):
+    """
+    Fusionne les données RH nettoyées avec les données sportives par ID employé.
+    """
     logging.info("Fusion des données RH et sportives...")
     return df_rh.merge(df_sport[['id_employe', 'pratique_sportive']], on="id_employe", how="left")
 
 # === Upload sur S3 ===
 def upload_cleaned_data_to_s3(df):
+    """
+    Exporte les données nettoyées vers S3 sous deux versions :
+    - Une version datée.
+    - Une version 'latest' (toujours la plus récente).
+    """
     date_str = datetime.today().strftime("%Y-%m-%d")
     dated_file_key = f"{PREFIX_CLEAN}cleaned_employes_{date_str}.csv"
     latest_file_key = f"{PREFIX_CLEAN}cleaned_employes_latest.csv"
@@ -100,6 +122,13 @@ def upload_cleaned_data_to_s3(df):
 
 # === Pipeline principal ===
 def main():
+    """
+    Exécute l'ensemble du pipeline :
+    - Téléchargement des fichiers RH et sport depuis S3.
+    - Nettoyage des deux jeux de données.
+    - Fusion des données.
+    - Upload des fichiers nettoyés sur S3.
+    """
     logging.info("Téléchargement des fichiers depuis S3...")
     df_rh = fetch_latest_excel_from_prefix(PREFIX_RH)
     df_sport = fetch_latest_excel_from_prefix(PREFIX_SPORT)

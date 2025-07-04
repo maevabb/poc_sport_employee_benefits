@@ -9,6 +9,9 @@ from scripts.config import (s3_client, BUCKET_NAME, PREFIX_CLEAN, engine)
 
 # === Utilitaires pour téléchargement ===
 def fetch_latest_employes_csv(prefix):
+    """
+    Télécharge depuis S3 le fichier CSV des employés nettoyés le plus récent (suffixe `_latest.csv`).
+    """
     key = f"{prefix}cleaned_employes_latest.csv"
     logging.info(f"📄 Fichier chargé depuis S3 : {key}")
     obj = s3_client.get_object(Bucket=BUCKET_NAME, Key=key)
@@ -17,6 +20,9 @@ def fetch_latest_employes_csv(prefix):
 
 # === Insertion ou update ===
 def upsert_employe(row):
+    """
+    Insère ou met à jour les informations d’un employé dans la table `employes`.
+    """
     with engine.begin() as conn:
         conn.execute(sqlalchemy.text("""
             INSERT INTO employes (
@@ -43,6 +49,11 @@ def upsert_employe(row):
 
 # === Pipeline principal ===
 def main():
+    """
+    Pipeline principal :
+    - Télécharge les données nettoyées depuis S3.
+    - Insère ou met à jour chaque employé dans la base PostgreSQL.
+    """
     logging.info("Téléchargement des fichiers depuis S3...")
     df = fetch_latest_employes_csv(PREFIX_CLEAN)
     

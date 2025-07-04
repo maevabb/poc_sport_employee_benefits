@@ -12,6 +12,10 @@ from scripts.params import (DISTANCE_MAX_VELO, DISTANCE_MAX_MARCHE, TAUX_PRIME,)
 # === Lecture des données employes + distance ===
 
 def fetch_employees_with_distance():
+    """
+    Récupère les données des employés avec leur salaire brut, leur mode de déplacement
+    et la distance domicile-travail depuis la base de données.
+    """
     query = """
         SELECT e.id_employe, e.salaire_brut, e.mode_deplacement, c.distance_km
         FROM employes e
@@ -22,6 +26,9 @@ def fetch_employees_with_distance():
 # === Calcul métier de la prime sportive ===
 
 def compute_prime(df):
+    """
+    Calcule l'éligibilité à la prime sportive et le montant correspondant.
+    """
     conditions = (
         ((df['mode_deplacement'] == 'Vélo/Trottinette/Autres') & (df['distance_km'] <= DISTANCE_MAX_VELO)) |
         ((df['mode_deplacement'] == 'Marche/running') & (df['distance_km'] <= DISTANCE_MAX_MARCHE))
@@ -33,6 +40,9 @@ def compute_prime(df):
 # === Insertion ou mise à jour en base ===
 
 def upsert_prime(id_employe, eligible_ps, montant_prime):
+    """
+    Insère ou met à jour les données de prime sportive pour un employé dans la base de données.
+    """
     with engine.begin() as conn:
         conn.execute(
             sqlalchemy.text("""
@@ -49,6 +59,12 @@ def upsert_prime(id_employe, eligible_ps, montant_prime):
 # === Pipeline principal ===
 
 def main():
+    """
+    Pipeline principal de calcul de la prime sportive :
+    - Récupération des données d'employés.
+    - Calcul de l'éligibilité et du montant.
+    - Insertion ou mise à jour en b
+    """
     df = fetch_employees_with_distance()
     logging.info(f"{len(df)} salariés à traiter pour la prime sportive.")
 

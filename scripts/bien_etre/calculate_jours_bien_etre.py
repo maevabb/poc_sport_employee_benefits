@@ -11,8 +11,10 @@ from scripts.config import (engine)
 from scripts.params import (NB_ACTIVITES_MIN, NB_JOURS_BE)
 
 # === Lecture des activités sportives des 12 derniers mois ===
-
 def fetch_eligible_activities():
+    """
+    Récupère le nombre d'activités sportives pour chaque employé sur les 12 derniers mois.
+    """
     query = """
         SELECT id_employe, COUNT(*) AS nb_activites
         FROM activities_sportives
@@ -23,14 +25,18 @@ def fetch_eligible_activities():
     return pd.read_sql(query, con=engine)
 
 # === Lecture des jours CP actuels dans employes ===
-
 def fetch_cp_base():
+    """
+    Récupère le nombre actuel de jours de congés payés (CP) pour chaque employé.
+    """
     query = "SELECT id_employe, nb_jours_cp FROM employes"
     return pd.read_sql(query, con=engine)
 
 # === Calcul des jours bien-être et éligibilité ===
-
 def compute_bien_etre(df_acts, df_cp):
+    """
+    Calcule l'éligibilité des employés aux journées bien-être et le nombre total de jours de CP.
+    """
     df = df_acts.merge(df_cp, on="id_employe", how="left")
     df['eligible_be'] = df['nb_activites'] >= NB_ACTIVITES_MIN
     df['nb_jours_bien_etre'] = df['eligible_be'].astype(int) * NB_JOURS_BE
@@ -38,8 +44,11 @@ def compute_bien_etre(df_acts, df_cp):
     return df[['id_employe', 'nb_activites', 'eligible_be', 'nb_jours_bien_etre', 'nb_jours_cp_total']]
 
 # === Insertion ou mise à jour en base ===
-
 def upsert_cp_be(row):
+    """
+    Insère ou met à jour les données de jours bien-être et de CP total
+    pour un employé donné dans la table 'cp_bien_etre'.
+    """
     with engine.begin() as conn:
         conn.execute(
             sqlalchemy.text("""
@@ -62,8 +71,13 @@ def upsert_cp_be(row):
         )
 
 # === Pipeline principal ===
-
 def main():
+    """
+    Exécute le pipeline complet de calcul des jours bien-être :
+    - Récupération des données d'activités et de CP.
+    - Calcul de l'éligibilité.
+    - Insertion ou mise à jour en base.
+    """
     df_acts = fetch_eligible_activities()
     df_cp = fetch_cp_base()
 

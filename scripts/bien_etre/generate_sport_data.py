@@ -18,6 +18,9 @@ from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT, SPORT_MAPPI
 
 # === Fonctions ===
 def generate_activity(employee_id, sport_type):
+    """
+    Génère aléatoirement une activité sportive simulée pour un employé.
+    """
     now = datetime.now()
     start_date = now - timedelta(days=365)
     debut = start_date + timedelta(days=random.randint(0, 365))
@@ -42,6 +45,9 @@ def generate_activity(employee_id, sport_type):
     }
 
 def fetch_employees_with_sport():
+    """
+    Récupère les employés ayant une pratique sportive renseignée dans la base de données.
+    """
     query = """
         SELECT id_employe, pratique_sportive
         FROM employes
@@ -50,6 +56,12 @@ def fetch_employees_with_sport():
     return pd.read_sql(query, con=engine)
 
 def main(nb_messages, time_sleep):
+    """
+    Fonction principale qui simule des activités sportives :
+    - Sélectionne aléatoirement un employé avec une pratique sportive.
+    - Génère une activité réaliste.
+    - Envoie le message vers Redpanda (Kafka) avec un délai paramétré.
+    """
     df = fetch_employees_with_sport()
     logging.info(f"{len(df)} employés avec pratique sportive trouvés.")
 
