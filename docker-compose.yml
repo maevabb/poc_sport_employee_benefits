@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - ./data/postgres_data:/var/lib/postgresql/data
 
  # Redpanda broker
   redpanda:
@@ -32,7 +32,7 @@ services:
       - "9092:9092"      # port Kafka API
       - "9644:9644"      # port Admin API (pour Redpanda Console)
     volumes:
-      - ./redpanda_data:/var/lib/redpanda/data
+      - ./data/redpanda_data:/var/lib/redpanda/data
 
   # Redpanda Console (monitoring visuel du broker)
   redpanda-console:
