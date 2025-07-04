@@ -32,3 +32,17 @@ scripts/great_expectations/
 
 # Secrets
 secrets/
+
+# Airflow logs
+logs/
+
+# Fichiers PID ou state
+airflow-webserver.pid
+airflow-scheduler.pid
+
+# Plugins
+plugins/
+
+# Ignorer tout sauf les fichiers .py dans dags/
+dags/*
+!dags/*.py
