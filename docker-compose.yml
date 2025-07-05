@@ -86,6 +86,8 @@ services:
     command: api-server
     ports:
       - "8081:8080"
+    env_file:
+      - .env
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/version"]
       interval: 30s
@@ -101,6 +103,8 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    env_file:
+      - .env
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
@@ -116,6 +120,8 @@ services:
   airflow-dag-processor:
     <<: *airflow-common
     command: dag-processor
+    env_file:
+      - .env
     healthcheck:
       test: ["CMD-SHELL", 'airflow jobs check --job-type DagProcessorJob --hostname "$${HOSTNAME}"']
       interval: 30s
@@ -127,7 +133,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-        
+
   airflow-init:
     <<: *airflow-common
     container_name: airflow_init

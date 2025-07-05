@@ -1,3 +1,5 @@
+import os
+import sys
 import logging
 import pandas as pd
 from io import BytesIO
@@ -5,6 +7,9 @@ from datetime import datetime
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if scripts_path not in sys.path:
+    sys.path.insert(0, scripts_path)
 from config import (s3_client, BUCKET_NAME, PREFIX_RH, PREFIX_SPORT, PREFIX_CLEAN)
 
 # === Utilitaires pour téléchargement ===
