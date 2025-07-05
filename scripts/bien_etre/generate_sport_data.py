@@ -8,10 +8,8 @@ import pandas as pd
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (
-    engine,
-    producer, TOPIC_NAME
-    )
+from scripts.config import (engine)
+from scripts.config_kafka import (producer, TOPIC_NAME)
 
 # === Paramètres métier ===
 from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT, SPORT_MAPPING, DISTANCE_RELEVANT_SPORTS)

@@ -10,8 +10,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 from scripts.config import (
     engine,
     SLACK_BOT_TOKEN_COACH, SLACK_CHANNEL_ID_COACH,
-    consumer, TOPIC_NAME
     )
+
+from scripts.config_kafka import (consumer, TOPIC_NAME)
 
 # === Slack ===
 def send_to_slack(message):

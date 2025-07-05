@@ -1,7 +1,6 @@
 import sqlalchemy
 import os
 import boto3
-from confluent_kafka import Consumer, Producer
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,17 +30,3 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 # === SLACK ===
 SLACK_BOT_TOKEN_COACH = os.getenv("SLACK_BOT_TOKEN_COACH")
 SLACK_CHANNEL_ID_COACH = os.getenv("SLACK_CHANNEL_ID_COACH")
-
-# === REDPANDA ===
-KAFKA_BROKER = 'localhost:9092'
-TOPIC_NAME = 'sport-activities'
-GROUP_ID = 'activity-consumer-group'
-
-consumer_conf = {
-    'bootstrap.servers': KAFKA_BROKER,
-    'group.id': GROUP_ID,
-    'auto.offset.reset': 'earliest' 
-}
-
-consumer = Consumer(consumer_conf)
-producer = Producer({'bootstrap.servers': KAFKA_BROKER})
