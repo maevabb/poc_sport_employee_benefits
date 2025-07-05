@@ -4,10 +4,10 @@ import logging
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (engine)
+from config import (engine)
 
 # === Paramètres métier ===
-from scripts.params import (DISTANCE_MAX_VELO, DISTANCE_MAX_MARCHE, TAUX_PRIME,)
+from params import (DISTANCE_MAX_VELO, DISTANCE_MAX_MARCHE, TAUX_PRIME,)
 
 # === Lecture des données employes + distance ===
 

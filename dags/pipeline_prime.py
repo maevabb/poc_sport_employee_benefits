@@ -1,14 +1,20 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+import sys
+import os
 from datetime import datetime
 import logging
 
+scripts_path = os.path.abspath("/opt/airflow/scripts")
+if scripts_path not in sys.path:
+    sys.path.insert(0, scripts_path)
+
 # === Import de tes scripts ===
-from scripts.prime_sportive.clean_employes_data import main as clean_employes_data
-from scripts.prime_sportive.ingest_employes_data import main as ingest_employes_data
-from scripts.prime_sportive.get_distance_google import main as get_distance
-from scripts.prime_sportive.calculate_prime import main as calculate_prime
-from scripts.prime_sportive.gx_run_checkpoint_employe import run_checkpoint_employe
+from prime_sportive.clean_employes_data import main as clean_employes_data
+from prime_sportive.ingest_employes_data import main as ingest_employes_data
+from prime_sportive.get_distance_google import main as get_distance
+from prime_sportive.calculate_prime import main as calculate_prime
+from prime_sportive.gx_run_checkpoint_employe import run_checkpoint_employe
 
 # === DAG Definition ===
 default_args = {

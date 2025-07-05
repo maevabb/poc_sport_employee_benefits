@@ -5,7 +5,7 @@ from datetime import datetime
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (s3_client, BUCKET_NAME, PREFIX_RH, PREFIX_SPORT, PREFIX_CLEAN)
+from config import (s3_client, BUCKET_NAME, PREFIX_RH, PREFIX_SPORT, PREFIX_CLEAN)
 
 # === Utilitaires pour téléchargement ===
 def fetch_latest_excel_from_prefix(prefix):

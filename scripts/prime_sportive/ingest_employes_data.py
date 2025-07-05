@@ -5,7 +5,7 @@ from io import BytesIO
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (s3_client, BUCKET_NAME, PREFIX_CLEAN, engine)
+from config import (s3_client, BUCKET_NAME, PREFIX_CLEAN, engine)
 
 # === Utilitaires pour téléchargement ===
 def fetch_latest_employes_csv(prefix):

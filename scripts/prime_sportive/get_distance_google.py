@@ -6,10 +6,10 @@ import logging
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (engine, GOOGLE_API_KEY)
+from config import (engine, GOOGLE_API_KEY)
 
 # === Paramètres métier ===
-from scripts.params import (WORK_ADDRESS)
+from params import (WORK_ADDRESS)
 
 # === Appel de l'API Google avec gestion des exceptions ===
 def get_distance(origin_address):

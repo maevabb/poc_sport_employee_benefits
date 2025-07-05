@@ -1,0 +1,8 @@
+FROM apache/airflow:3.0.2-python3.11
+
+USER airflow
+
+COPY --chown=airflow:root requirements-airflow.txt /tmp/requirements.txt
+
+RUN pip cache purge && pip install --no-cache-dir -r /tmp/requirements.txt
+
