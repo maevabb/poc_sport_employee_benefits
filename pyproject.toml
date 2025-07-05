@@ -23,6 +23,7 @@ confluent-kafka = "^2.10.1"
 slack-sdk = "^3.35.0"
 great-expectations = "^1.5.3"
 boto3 = "^1.39.0"
+cryptography = "^45.0.5"
 
 
 [build-system]
