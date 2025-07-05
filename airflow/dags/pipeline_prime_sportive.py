@@ -1,5 +1,6 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.sdk import DAG
+from airflow.providers.standard.operators.empty import EmptyOperator
+from airflow.providers.standard.operators.python import PythonOperator
 import sys
 import os
 from datetime import datetime
@@ -25,13 +26,12 @@ default_args = {
 
 with DAG(
     dag_id='pipeline_prime_sportive',
-    default_args=default_args,
-    schedule_interval='@monthly',
+    start_date= datetime(2025, 7, 1),
+    schedule='@monthly',
     catchup=False,
     description="Pipeline mensuel : données RH > distances > prime sportive",
     tags=['prime', 'rh', 'monthly']
 ) as dag:
-
     t1_clean_data = PythonOperator(
         task_id='clean_employes_data',
         python_callable=clean_employes_data
