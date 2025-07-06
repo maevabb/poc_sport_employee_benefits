@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # === POSTGRESQL ===
-DATABASE_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/poc_avantages_sportifs"
+DATABASE_URL = f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@postgres_poc:5432/{os.getenv('POSTGRES_DB')}"
 engine = sqlalchemy.create_engine(DATABASE_URL)
 
 # === AWS ===
