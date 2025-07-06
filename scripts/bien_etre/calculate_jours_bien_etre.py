@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (engine)
+from config import (engine)
 
 # === Paramètres métier ===
-from scripts.params import (NB_ACTIVITES_MIN, NB_JOURS_BE)
+from params import (NB_ACTIVITES_MIN, NB_JOURS_BE)
 
 # === Lecture des activités sportives des 12 derniers mois ===
 def fetch_eligible_activities():
