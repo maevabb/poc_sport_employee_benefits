@@ -300,23 +300,23 @@ services:
     depends_on:
       <<: *airflow-common-depends-on
 
-  flower:
-    <<: *airflow-common
-    command: celery flower
+  sport-consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    command: python scripts/bien_etre/consume_sport_data.py
     env_file:
       - .env
-    profiles:
-      - flower
-    ports:
-      - "5555:5555"
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:5555/"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      SLACK_BOT_TOKEN_COACH: ${SLACK_BOT_TOKEN_COACH}
+      SLACK_CHANNEL_ID_COACH: ${SLACK_CHANNEL_ID_COACH}
+    volumes:
+      - ./scripts:/app/scripts
     depends_on:
-      <<: *airflow-common-depends-on
-      airflow-init:
-        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
