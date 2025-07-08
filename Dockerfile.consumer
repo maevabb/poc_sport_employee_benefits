@@ -1,0 +1,22 @@
+FROM python:3.11
+
+# Création de l'utilisateur
+RUN useradd -ms /bin/bash airflow_user
+
+# Dossier de travail
+WORKDIR /app
+
+# Copie des scripts
+COPY scripts/bien_etre ./scripts/bien_etre
+COPY scripts/config.py ./scripts/config.py
+COPY scripts/config_kafka.py ./scripts/config_kafka.py
+
+# Install des dépendances
+COPY requirements-consumer.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Utilisateur non-root
+USER airflow_user
+
+# Commande par défaut
+CMD ["python", "scripts/bien_etre/consume_sport_data.py"]

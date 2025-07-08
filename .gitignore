@@ -13,6 +13,7 @@ build/
 
 # Jupyter notebooks
 .ipynb_checkpoints/
+/notebooks
 
 # Environment files
 .env
