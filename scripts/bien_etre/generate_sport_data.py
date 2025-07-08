@@ -1,15 +1,20 @@
 import json
+import os
 import random
 import time
 from datetime import datetime, timedelta
 import argparse
 import logging
 import pandas as pd
+import sqlalchemy
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # === Config ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-from scripts.config import (engine)
 from scripts.config_kafka import (producer, TOPIC_NAME)
+from scripts.config import (engine)
 
 # === Paramètres métier ===
 from scripts.params import (NB_MESSAGES_DEFAULT, TIME_SLEEP_DEFAULT, SPORT_MAPPING, DISTANCE_RELEVANT_SPORTS)

@@ -13,7 +13,7 @@ NB_ACTIVITES_MIN = 15       # Nb d'activités minimum /an pour déclencher le dr
 NB_JOURS_BE = 5             # Nb de jours bien-être accordés
 
 # générateur d'activités sportives
-NB_MESSAGES_DEFAULT = 50    # Nb d'activités générées
+NB_MESSAGES_DEFAULT = 2    # Nb d'activités générées
 TIME_SLEEP_DEFAULT = 3      # Durée en secondes entre chaque message
 
 SPORT_MAPPING = {

@@ -7,9 +7,8 @@ RUN useradd -ms /bin/bash airflow_user
 WORKDIR /app
 
 # Copie des scripts
-COPY scripts/bien_etre ./scripts/bien_etre
-COPY scripts/config.py ./scripts/config.py
-COPY scripts/config_kafka.py ./scripts/config_kafka.py
+COPY scripts ./scripts
+ENV PYTHONPATH=/app
 
 # Install des dépendances
 COPY requirements-consumer.txt ./requirements.txt

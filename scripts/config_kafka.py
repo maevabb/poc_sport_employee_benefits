@@ -1,7 +1,7 @@
 from confluent_kafka import Consumer, Producer
 
 # === REDPANDA ===
-KAFKA_BROKER = 'localhost:9092'
+KAFKA_BROKER = 'redpanda:9092'
 TOPIC_NAME = 'sport-activities'
 GROUP_ID = 'activity-consumer-group'
 
