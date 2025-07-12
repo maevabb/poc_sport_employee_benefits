@@ -109,6 +109,8 @@ def upload_cleaned_data_to_s3(df):
     - Une version datée.
     - Une version 'latest' (toujours la plus récente).
     """
+    df = df.where(pd.notnull(df), None)
+    
     date_str = datetime.today().strftime("%Y-%m-%d")
     dated_file_key = f"{PREFIX_CLEAN}cleaned_employes_{date_str}.csv"
     latest_file_key = f"{PREFIX_CLEAN}cleaned_employes_latest.csv"

@@ -66,6 +66,7 @@ def main(nb_messages, time_sleep):
     - Envoie le message vers Redpanda (Kafka) avec un délai paramétré.
     """
     df = fetch_employees_with_sport()
+    df = df[df['pratique_sportive'].notna() & (df['pratique_sportive'].str.strip() != '')]
     logging.info(f"{len(df)} employés avec pratique sportive trouvés.")
 
     for i in range(nb_messages):

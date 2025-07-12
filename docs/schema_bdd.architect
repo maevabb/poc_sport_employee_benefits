@@ -115,31 +115,31 @@
     </index>
    </folder>
   </table>
-  <table id="TAB31" populated="true" UUID="884e44d3-a620-463f-8971-3c50765ea76e" name="activites_sportives" objectType="TABLE" physicalName="activites_sportives" >
+  <table id="TAB31" populated="true" UUID="884e44d3-a620-463f-8971-3c50765ea76e" name="activities_sportives" objectType="TABLE" physicalName="activities_sportives" >
    <remarks></remarks>
    <folder id="FOLTAB311" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL32" populated="true" UUID="7a254237-a0cd-4f1d-ac81-649f5cc6a3b8" autoIncrement="true" autoIncrementSequenceName="activites_sportives_id_activite_seq" defaultValue="" name="id_activite" nullable="0" physicalName="id_activite" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL32" populated="true" UUID="7a254237-a0cd-4f1d-ac81-649f5cc6a3b8" autoIncrement="true" autoIncrementSequenceName="activities_sportives_id_activite_seq" defaultValue="" name="id_activite" nullable="0" physicalName="id_activite" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL33" populated="true" UUID="78c39ab3-c7b6-4592-8bbc-16484d8121fa" autoIncrement="false" autoIncrementSequenceName="activites_sportives_id_employe_seq" defaultValue="" name="id_employe" nullable="0" physicalName="id_employe" precision="0" primaryKeySeq="1" referenceCount="3" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL33" populated="true" UUID="78c39ab3-c7b6-4592-8bbc-16484d8121fa" autoIncrement="false" autoIncrementSequenceName="activities_sportives_id_employe_seq" defaultValue="" name="id_employe" nullable="0" physicalName="id_employe" precision="0" primaryKeySeq="1" referenceCount="3" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL34" populated="true" UUID="f28ca88c-42f2-4e46-a209-c79e8f05bcfc" autoIncrement="false" autoIncrementSequenceName="activites_sportives_debut_activite_seq" defaultValue="" name="debut_activite" nullable="1" physicalName="debut_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL34" populated="true" UUID="f28ca88c-42f2-4e46-a209-c79e8f05bcfc" autoIncrement="false" autoIncrementSequenceName="activities_sportives_debut_activite_seq" defaultValue="" name="debut_activite" nullable="1" physicalName="debut_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
-    <column id="COL35" populated="true" UUID="139f43e5-357b-4b33-8500-477c34c48ea0" autoIncrement="false" autoIncrementSequenceName="activites_sportives_fin_activite_seq" defaultValue="" name="fin_activite" nullable="1" physicalName="fin_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL35" populated="true" UUID="139f43e5-357b-4b33-8500-477c34c48ea0" autoIncrement="false" autoIncrementSequenceName="activities_sportives_fin_activite_seq" defaultValue="" name="fin_activite" nullable="1" physicalName="fin_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
-    <column id="COL36" populated="true" UUID="e0a5bdc7-8e4c-4ff2-8cad-3600b68b8f22" autoIncrement="false" autoIncrementSequenceName="activites_sportives_type_activite_seq" defaultValue="" name="type_activite" nullable="1" physicalName="type_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL36" populated="true" UUID="e0a5bdc7-8e4c-4ff2-8cad-3600b68b8f22" autoIncrement="false" autoIncrementSequenceName="activities_sportives_type_activite_seq" defaultValue="" name="type_activite" nullable="1" physicalName="type_activite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL37" populated="true" UUID="803a276b-7358-4e47-b6d4-efa0cd4b8b5e" autoIncrement="false" autoIncrementSequenceName="activites_sportives_distance_seq" defaultValue="" name="distance" nullable="1" physicalName="distance" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL37" populated="true" UUID="803a276b-7358-4e47-b6d4-efa0cd4b8b5e" autoIncrement="false" autoIncrementSequenceName="activities_sportives_distance_seq" defaultValue="" name="distance" nullable="1" physicalName="distance" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL38" populated="true" UUID="4ed13e3e-7ca6-446c-8ba5-f5299de29860" autoIncrement="false" autoIncrementSequenceName="activites_sportives_duree_seq" defaultValue="" name="duree" nullable="1" physicalName="duree" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL38" populated="true" UUID="4ed13e3e-7ca6-446c-8ba5-f5299de29860" autoIncrement="false" autoIncrementSequenceName="activities_sportives_temps_sec_seq" defaultValue="" name="duree_sec" nullable="1" physicalName="temps_sec" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL39" populated="true" UUID="10f86067-7312-4782-a877-4912ef506de3" autoIncrement="false" autoIncrementSequenceName="activites_sportives_commentaire_seq" defaultValue="" name="commentaire" nullable="1" physicalName="commentaire" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL39" populated="true" UUID="10f86067-7312-4782-a877-4912ef506de3" autoIncrement="false" autoIncrementSequenceName="activities_sportives_commentaire_seq" defaultValue="" name="commentaire" nullable="1" physicalName="commentaire" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>

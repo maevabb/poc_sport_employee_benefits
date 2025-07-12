@@ -15,13 +15,13 @@ def fetch_latest_employes_csv(prefix):
     key = f"{prefix}cleaned_employes_latest.csv"
     logging.info(f"📄 Fichier chargé depuis S3 : {key}")
     obj = s3_client.get_object(Bucket=BUCKET_NAME, Key=key)
-    return pd.read_csv(BytesIO(obj["Body"].read()))
+    return pd.read_csv(BytesIO(obj["Body"].read()), na_values=["", "NaN", "nan", "None"])
 
 
 # === Insertion ou update ===
 def upsert_employe(row):
     """
-    Insère ou met à jour les informations d’un employé dans la table `employes`.
+    Insère ou met à jour les informations d'un employé dans la table `employes`.
     """
     with engine.begin() as conn:
         conn.execute(sqlalchemy.text("""
@@ -60,7 +60,8 @@ def main():
     logging.info(f"{len(df)} employés à insérer ou mettre à jour...")
 
     for _, row in df.iterrows():
-        upsert_employe(row.to_dict())
+        row_dict = row.where(pd.notnull(row), None).to_dict()
+        upsert_employe(row_dict)
         logging.info(f"✅ Employé {row['id_employe']} traité.")
 
 if __name__ == "__main__":
