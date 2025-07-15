@@ -26,6 +26,7 @@ build/
 data/
 *.csv
 data/*.xlsx
+*.pptx
 
 # Dossiers internes non versionnés
 data/
