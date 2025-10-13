@@ -10,14 +10,14 @@ scripts_path = os.path.abspath("/opt/airflow/scripts")
 if scripts_path not in sys.path:
     sys.path.insert(0, scripts_path)
 
-# === Import de tes scripts ===
+# Import des scripts
 from prime_sportive.clean_employes_data import main as clean_employes_data
 from prime_sportive.ingest_employes_data import main as ingest_employes_data
 from prime_sportive.get_distance_google import main as get_distance
 from prime_sportive.calculate_prime import main as calculate_prime
 from prime_sportive.gx_run_checkpoint_employe import run_checkpoint_employe
 
-# === DAG Definition ===
+# DAG Definition
 default_args = {
     'owner': 'airflow',
     'start_date': datetime(2025, 7, 1),
